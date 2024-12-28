@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character limit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form id="textform">
+        <h1>Character Count</h1>
+        <h3>Enter your story below 200 Characters</h3>
+        <p id="count">Character Count : </p>
+        <textarea id="fieldinputs" value="" name="fielddata" rows="10" cols="50" ></textarea>
+    </form>
+    <script>
+        const input = document.querySelector('#fieldinputs')
+        const count = document.querySelector('count')
+        console.log(input.value)
+        const maxlength = 200
+        //maximum length
+		document.getElementById("count").textContent = "Character Count : " + maxlength +"/"+maxlength
+        //add popup
+        input.addEventListener("keypress", event => {
+            let vlength = event.target.value.length + 1
+            if (vlength <= maxlength) {
+                document.getElementById("count").textContent = "Character Count : " + Number(maxlength-vlength)+"/"+maxlength
+                //vlength--;
+            }
+            if(vlength > maxlength) {
+                console.log("else block")
+                alert("Your exceed maximum length")
+				event.preventDefault();
+				return false;
+            }
+
+
+        });
+		input.addEventListener("keyup", event => {
+			if (event.key === 'Delete' || event.key === 'Backspace') {
+			
+				let vlength = event.target.value.length
+				if (vlength <= maxlength) {
+					document.getElementById("count").textContent = "Character Count : " + Number(maxlength-vlength)+"/"+maxlength
+					//vlength--;
+				}
+			   
+			}
+
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
